@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div class ="content">
+    <h1 style="text-align: center">Task Master</h1>
+        <h3>Incomplete Tasks</h3>
+    {% if tasks|length < 1 %}
+    <h4 style="text-align: center">There are no tasks. Create one below!</h4>
+        <center>
+            <a title = "Create New Task" class="tim-icons icon-simple-add" style = "font-size: 30px;" href="/newtask/"></a>
+        </center>
+    {% else %}
+    {% for task in tasks %}
+        {% if task.complete != True %}
+        <div class="row">
+          <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+                <div class="row">
+                 <div class="col-md-9">
+                     <h4 class="card-title" style = "background-color: orange ;float: left;border-radius: 0.5rem 0.5rem 0.5rem 0.5rem; padding: 0.25rem">{{ task.content }}</h4>
+                 </div>
+                 <div class="col-md-3">
+                 <a title = "Delete" class="tim-icons icon-trash-simple" href="/delete/{{task.id}}"></a>
+                 <a style="padding-left:5px;" title = "Update"class="tim-icons icon-pencil" href="/update/{{task.id}}"></a>
+                 <a style="padding-left:5px;" title = "Done"class="tim-icons icon-check-2" href="/completed/{{task.id}}"></a>
+                 </div>
+                </div>
+                 <h6 class="card-subtitle mb-2 text-muted">{{ task.date_created.date() }}</h6>
+                 <p class="card-text">{{ task.details }}</p>
+            </div>
+        </div>
+          </div>
+       </div>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div class ="content">
+    <h1 style="text-align: center">Task Master</h1>
+        <h3>Completed Tasks</h3>
+    {% for task in tasks %}
+        <div class="row">
+          <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+                <div class="row">
+                 <div class="col-md-10">
+                     <h4 class="card-title" style = "background-color: green ;float: left;border-radius: 0.5rem 0.5rem 0.5rem 0.5rem; padding: 0.25rem">{{ task.content }}</h4>
+                 </div>
+                 <div class="col-md-2">
+                 <a title = "Delete" class="tim-icons icon-trash-simple" href="/delete/{{task.id}}"></a>
+                 </div>
+                </div>
+                 <h6 class="card-subtitle mb-2 text-muted">{{ task.date_created.date() }}</h6>
+                 <p class="card-text">{{ task.details }}</p>
+            </div>
+        </div>
+    </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
